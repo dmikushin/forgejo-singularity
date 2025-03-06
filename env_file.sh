@@ -1,7 +1,7 @@
 export USER_UID=1000
 export USER_GID=1000
 export FORGEJO__database__DB_TYPE=mysql
-export FORGEJO__database__HOST=db:3306
+export FORGEJO__database__HOST=localhost:3306
 export FORGEJO__database__NAME=forgejo
 export FORGEJO__database__USER=forgejo
 export FORGEJO__database__PASSWD=forgejo

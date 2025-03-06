@@ -1,26 +1,20 @@
 version: "2.0"
 
-networks:
-  forgejo:
-    external: false
-
 instances:
   server:
     image: docker://codeberg.org/forgejo/forgejo:10.0.1
     container_name: forgejo
     restart: always
-    networks:
-      - forgejo
     volumes:
       - ./env_file.sh:/.singularity.d/env/env_file.sh
       - ./forgejo:/data
       - /etc/timezone:/etc/timezone
       - /etc/localtime:/etc/localtime
-    ports:
-      - "3000:3000"
-      - "2222:2222"
+    network:
+      enable: false
     depends_on:
       - db
+
     start:
       options:
         - fakeroot
@@ -30,11 +24,11 @@ instances:
   db:
     image: docker://mysql:8
     restart: always
-    networks:
-      - forgejo
     volumes:
       - ./env_file.sh:/.singularity.d/env/env_file.sh
       - ./mysql:/var/lib/mysql
+    network:
+      enable: false
     start:
       options:
         - fakeroot
